@@ -17,11 +17,11 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  *
  */
 public class DriveTrain extends Subsystem {
-	private WPI_TalonSRX fL; //Front Left Motor 
+	public WPI_TalonSRX fL; //Front Left Motor 
 	private WPI_TalonSRX bL; //Back Left Motor
-	private WPI_TalonSRX fR; //Front Right Motor
+	public WPI_TalonSRX fR; //Front Right Motor
 	private WPI_TalonSRX bR; //Back Right Motor
-	private Double fPID = 19.2;
+	private Double fPID = 1.0;
 	private Double pPid = 0.0;
 	private Double dPid = 0.0;
 	DifferentialDrive drive; //RobotDrive instance to control motors during teleop
@@ -39,8 +39,8 @@ public class DriveTrain extends Subsystem {
 		bL = new WPI_TalonSRX(bLID);
 		fR = new WPI_TalonSRX(fRID);
 		bR = new WPI_TalonSRX(bRID);
-		fL.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder.RemoteSensor1, 0, 0);
-		fR.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder.RemoteSensor1, 0, 0);
+		fL.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,0);
+		fR.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,0);
 		leftDrive = new SpeedControllerGroup(fL, bL);
 	    rightDrive = new SpeedControllerGroup(fR, bR);
 	    bL.follow(fL);//fL leads bL follows
@@ -48,7 +48,7 @@ public class DriveTrain extends Subsystem {
 		
 	//setFollowerOf(fR, bR);
 		drive = new DifferentialDrive(this.leftDrive, this.rightDrive);
-		pidInit();
+		//pidInit();
 	}
 	public int getSpeed() {
 		System.out.println(fL.getSelectedSensorVelocity(0));
@@ -81,7 +81,7 @@ public class DriveTrain extends Subsystem {
 		//fR.configEncoderCodesPerRev(256); ALWAYS 100 as of 2018
 		
 		//fL.reverseSensor(false);
-		fL.setSensorPhase(false);
+		fL.setSensorPhase(true);
 		//fR.reverseSensor(true);
 		fR.setSensorPhase(true);
 		

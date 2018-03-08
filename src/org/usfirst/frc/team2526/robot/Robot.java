@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2526.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2526.robot.commands.TurnLeft;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.ExampleSubsystem;
 
@@ -27,8 +28,8 @@ public class Robot extends TimedRobot {
 	public static final ExampleSubsystem kExampleSubsystem
 			= new ExampleSubsystem();
 	public static OI oi;
-	public static DriveTrain driveTrain = new DriveTrain(4,9,11,3);
-	Command m_autonomousCommand;
+	public static DriveTrain driveTrain = new DriveTrain(RobotMap.DRIVETRAIN_BACKLEFT,RobotMap.DRIVETRAIN_BACKRIGHT,RobotMap.DRIVETRAIN_FRONTLEFT,RobotMap.DRIVETRAIN_FRONTRIGHT);	
+	Command m_autonomousCommand = new TurnLeft();
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	/**
